@@ -17,6 +17,8 @@ using Sandbox.Game.EntityComponents;
 using SpaceEngineers.Game.ModAPI.Ingame;
 using VRage.Game.ObjectBuilders.Definitions;
 
+using WSV.IterableInt;
+
 namespace SpaceEngineers.UWBlockPrograms.Test
 {
   public sealed class Program : MyGridProgram
