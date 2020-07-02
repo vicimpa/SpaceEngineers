@@ -11,9 +11,6 @@
     <Reference Include="Sandbox.Game">
       <HintPath>Bin64/Sandbox.Game.dll</HintPath>
     </Reference>
-    <Reference Include="SpaceEngineers">
-      <HintPath>Bin64/SpaceEngineers.exe</HintPath>
-    </Reference>
     <Reference Include="SpaceEngineers.Game">
       <HintPath>Bin64/SpaceEngineers.Game.dll</HintPath>
     </Reference>
