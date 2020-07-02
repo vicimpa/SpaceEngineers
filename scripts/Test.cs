@@ -38,8 +38,6 @@ namespace SpaceEngineers.UWBlockPrograms.Test
     Vector2 position;
     Vector2 direction;
 
-    IMyStoreBlock storeBlock;
-
     Program()
     {
       gts = GridTerminalSystem;
