@@ -1,10 +1,10 @@
 namespace WSV.IterableInt
 {
-  class IterableInt
+  public class IterableInt
   {
     int now = 0, max = 0;
 
-    IterableInt(int inputMax) {
+    public IterableInt(int inputMax) {
       max = inputMax;
     }
 

@@ -29,21 +29,24 @@ namespace SpaceEngineers.UWBlockPrograms.Test
     IMyTextPanel lcd;
 
     int Size = 100;
-    int BoxSize = 4; 
-    int ticks = 0;
+    int BoxSize = 5; 
 
     Random generator;
     StringBuilder buffer;
 
+    IterableInt iterator;
+
     Vector2 position;
     Vector2 direction;
 
-    Program()
+    public Program()
     {
       gts = GridTerminalSystem;
       lcd = gts.GetBlockWithName("LCD") as IMyTextPanel;
 
       generator = new Random();
+
+      iterator = new IterableInt(1);
 
       int x = generator.Next() % (Size-BoxSize);
       int y = generator.Next() % (Size-BoxSize);
@@ -80,12 +83,11 @@ namespace SpaceEngineers.UWBlockPrograms.Test
       lcd.ContentType = ContentType.TEXT_AND_IMAGE;
     }
 
-    void Render() {
-      ticks++;
-
+    void Render(int start, int end) {
       int verySize = Size + 1;
+      int maxSize = Size * verySize;
 
-      for(int i = 0; i < Size * verySize; i++) {
+      for(int i = start / 100 * maxSize; i < end / 100 * maxSize; i++) {
         int x = i % verySize;
         int y = (i - x) / verySize;
 
@@ -98,21 +100,16 @@ namespace SpaceEngineers.UWBlockPrograms.Test
         }else {
           buffer[i] = '\n';
         }
-
       } 
-
-      lcd.WriteText(buffer);
     }
 
     public void Update() {
-      ticks++;
-
       Vector2 newPosition = position + direction;
 
-      if(newPosition.X < 0 || newPosition.X > Size - 1 - BoxSize)
+      if(newPosition.X < 0 || newPosition.X > Size - BoxSize)
         direction.X = -direction.X;
 
-      if(newPosition.Y < 0 || newPosition.Y > Size - 1 - BoxSize)
+      if(newPosition.Y < 0 || newPosition.Y > Size - BoxSize)
         direction.Y = -direction.Y;
 
       position += direction;
@@ -120,12 +117,15 @@ namespace SpaceEngineers.UWBlockPrograms.Test
 
     public void Main()
     {
-      if(ticks % 2 == 1) {
-        Update();
-      }
-
-      if(ticks % 2 == 0) {
-        Render();
+      switch(iterator.GetNext()) {
+        case 0: 
+          Update(); 
+          Render(0, 50);
+          break;
+        case 1: 
+          Render(50, 100); 
+          lcd.WriteText(buffer);
+        break;
       }
     }
 

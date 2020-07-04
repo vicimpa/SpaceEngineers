@@ -1,10 +1,5 @@
 const outputPath = '/home/vic/.local/share/Steam/steamapps/compatdata/244850/pfx/drive_c/users/steamuser/Application Data/SpaceEngineers/IngameScripts/local'
-const excludeSearch = [
-  '.vscode',
-  'bin',
-  'Bin64',
-  'obj'
-]
+const excludeSearch = ['.vscode', 'bin', 'Bin64', 'obj']
 
 /** @type {{[key: string]: {usedin: string[], required: string[], code: string}}} */
 const usingNamespaces = {}
